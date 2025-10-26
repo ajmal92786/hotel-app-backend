@@ -1,10 +1,18 @@
 const express = require("express");
+const cors = require("cors");
+const Hotel = require("./models/hotel.models");
+const { initializeDatabase } = require("./db/db.connect");
+
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
 const app = express();
 
-const { initializeDatabase } = require("./db/db.connect");
-const Hotel = require("./models/hotel.models");
-
 app.use(express.json());
+app.use(cors(corsOptions));
 
 initializeDatabase();
 
